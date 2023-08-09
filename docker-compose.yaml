@@ -1,0 +1,21 @@
+services:
+  app:
+    build: .
+    container_name: quote-api
+    command: python run.py
+    ports:
+      - 5000:5000
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    environment:
+      - RUNNING_IN_CONTAINER=TRUE
+
+  db:
+    image: postgres:latest
+    container_name: db
+    environment:
+      - POSTGRES_DB=bookairfreight_database
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1235
